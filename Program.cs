@@ -35,9 +35,28 @@ namespace File_IO_CSharp
             Console.WriteLine($"{words.Count} lines written, hit enter to continue.");
             Console.ReadLine();
 
+            Console.WriteLine("Reading numbers from file");
+            foreach (string line in File.ReadLines(@"numbers.txt", Encoding.UTF8))
+            {
+                numbers.Add(Convert.ToInt32(line));
+            }
+            numbers.Sort();
 
+            //Write sorted list
+            writer = new StreamWriter("sortedNumbers.txt");
+            foreach (int number in numbers)
+                writer.WriteLine(number + "");
+            writer.Close();
 
+            //Write summary
+            writer = new StreamWriter("numberSummary.txt");
+            
+            writer.WriteLine($"The sum is: {numbers.Sum()}");
+            writer.WriteLine($"The average is: {numbers.Average()}");
+            writer.Close();
 
+            Console.WriteLine("Files processed.  Hit Enter to close");
+            Console.ReadLine();
         }
     }
 }
