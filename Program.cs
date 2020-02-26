@@ -47,6 +47,7 @@ namespace File_IO_CSharp
             //Reading numeric data from file
             Console.WriteLine("Reading numbers from file");
 
+            //Ensures that the file exists
             if (File.Exists(@"test.txt"))
             {
                 foreach (string line in File.ReadLines(@"numbers.txt", Encoding.UTF8))
