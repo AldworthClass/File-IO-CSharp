@@ -13,16 +13,16 @@ namespace File_IO_CSharp
         {
             List<string> words = new List<string>();
             List<int> numbers = new List<int>();
-            StreamWriter writer = new StreamWriter("capitals.txt");
-
-            //All text files for reading must be in the same directory as the executable file
-            //All text files will be written to the same directory as executable file
-
+            string filePath = @"X:\My Drive\FileIO\test.txt";
+            string outFilePath = @"X:\My Drive\FileIO\capitals.txt";
+            StreamWriter writer = new StreamWriter(outFilePath);
+            // All text files for reading must be in the same directory as the executable file
+            // All text files will be written to the same directory as executable file
 
             //Simple Reading From a File
-            if (File.Exists(@"test.txt"))
+            if (File.Exists(filePath))
             {
-                foreach (string line in File.ReadLines(@"test.txt", Encoding.UTF8))
+                foreach (string line in File.ReadLines(filePath, Encoding.UTF8))
                 {
                     words.Add(line.ToUpper());
                 }
@@ -48,22 +48,23 @@ namespace File_IO_CSharp
             Console.WriteLine("Reading numbers from file");
 
             //Ensures that the file exists
-            if (File.Exists(@"test.txt"))
+            filePath = @"X:\My Drive\FileIO\numbers.txt";
+            if (File.Exists(filePath))
             {
-                foreach (string line in File.ReadLines(@"numbers.txt", Encoding.UTF8))
+                foreach (string line in File.ReadLines(filePath, Encoding.UTF8))
                 {
                     numbers.Add(Convert.ToInt32(line.Trim()));
                 }
                 numbers.Sort();
 
                 //Write sorted list
-                writer = new StreamWriter("sortedNumbers.txt");
+                writer = new StreamWriter(@"X:\My Drive\FileIO\sortedNumbers.txt");
                 foreach (int number in numbers)
                     writer.WriteLine(number + "");
                 writer.Close();
 
                 //Write summary
-                writer = new StreamWriter("numberSummary.txt");
+                writer = new StreamWriter(@"X:\My Drive\FileIO\numberSummary.txt");
 
                 writer.WriteLine($"The sum is: {numbers.Sum()}");
                 writer.WriteLine($"The average is: {numbers.Average()}");
